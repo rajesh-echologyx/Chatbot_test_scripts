@@ -6,73 +6,59 @@
 import fetch from 'node-fetch';
 import WebSocket from 'ws';
 
-const SESSION_CREATE_URL = 'https://stghood.elxchatbot.ai/api/v1.0/session/create/?domain=cocoweb.com';
-const BOT_ID = '50a5961e-4fd0-423a-9013-babf3d600ad9';
+const SESSION_CREATE_URL = 'https://stghood.elxchatbot.ai/api/v1.0/session/create/?domain=elx-test-store-2.myshopify.com';
+const BOT_ID = 'ed2666fb-cbd1-4f0c-ae7e-9afd1553a2d2';
+
+// const SESSION_CREATE_URL = 'https://admin.elxchatbot.ai/api/v1.0/session/create/?domain=chinti-parker-staging.myshopify.com';
+// const BOT_ID = '43af157a-0794-405e-b664-3def098bfda1';
+
 const TIME_ZONE = 'Asia/Dhaka';
 
 const NUM_SESSIONS = 1; // Number of sessions to create
 const MESSAGE_TEXTS = [
-  // Art & Paintings
-  'Do you sell art?',
-  'Do you sell paintings?',
-  'Do you sell photography?',
-  'Can I get Yosemite National Park photography?',
-  'Do you have any wildlife pictures?',
-  'I asked for general wildlife category. I don\'t need any specific product.',
-  // Lighting Products
-  'Does Cocoweb only sell lighting products?',
-  'Do you sell LED lights?',
-  'What kind of LED color do you offer?',
-  'I am asking about LED temperature.',
-  'How about 3500K?',
-  'Do you offer post lights?',
-  'Do you have any other options?',
-  'Do you have piano lights?',
-  // Trade & Shipping
-  'Is there a trade program available?',
-  'Where do I sign up?',
-  'What is the cost to ship internationally?',
-  'What about Hawaii?',
-  // Other Products
-  'Do you sell faucets?',
-  'Do you sell kitchen hardware?',
-  'Do you have barn lights?',
-  'Do you have gallery lights?',
-  'Do you have custom lighting options?',
-  // Picture Light & Calculator
-  'I need to get a picture light but how do I calculate the size of picture light for my artwork?',
-  'Where can I find the picture light calculator?',
-  'Is there a direct link?',
-  // Order/Support
-  'Can you check order 74239 for nithyat@cocoweb.com?',
-  'How do I track my order?',
-  'Can I return a product?',
-  // Website/General
-  'What makes Cocoweb lights eco-friendly?',
-  'Are your products made in the USA?',
-  'Can I customize my order?',
-  'What is your warranty policy?',
-  'Do you offer installation support?',
-  'What payment methods do you accept?',
-  'Can I get a quote for a large project?',
-  'Do you have any current promotions?',
-  'Where can I see customer reviews?',
-  'What is the difference between your barn and gallery lights?',
-  'Can you recommend lighting for a piano room?',
-  'How do I contact customer support?',
-  'What is Cocoweb’s return policy?',
-  'What is the lead time for custom orders?',
-  'Do you ship to Canada?',
-  'Can I get a sample finish?',
-  'What is the best light for artwork?',
-  'How do I clean Cocoweb lights?',
-  'Do you offer bulk discounts?',
-  'Can I visit your showroom?',
-  'What is the difference between LED and incandescent lighting?',
-  'How long do Cocoweb LED lights last?',
-  'What is the website URL?',
-  'Tell me about Cocoweb.',
-  'Vintage Indoor LED Barn Pendant Light Mahogany Bronze 14 inch'
+  // Knitwear & Sweaters
+  'Can you suggest some black knitwear?',
+  'Do you have any green knitwear options?',
+  'I need a red cashmere sweater for men. Can you suggest some?',
+  'Show me red sweaters.',
+  'Any green sweaters available?',
+  'I need a red sweater.',
+  'Do you have the Cream Wool-Cashmere Charlie\'s Poker Pals Sweater?',
+  'Do you have XS of Cream Wool-Cashmere Charlie\'s Poker Pals Sweater?',
+  'I need a merry christmas sweater.',
+
+  // T-Shirts
+  'Can you suggest some t-shirts in XL size?',
+  'I need a red t-shirt.',
+
+  // Jackets
+  'Can you show me some red jackets?',
+
+  // Trousers
+  'Do you have any trousers?',
+
+  // Skirts
+  'Do you sell skirts?',
+  'Can I still get the Mulberry midi skirt?',
+  'I would like to order a Mulberry midi skirt, size XS.',
+
+  // Orders & Order Status
+  'I want to know my order details. My order id is #GBP155215 and my email is abir@echologyx.com.',
+  'I have an order, how can I check its status?',
+
+  // Product Availability & General
+  'Any green options available?',
+  'Show me the red one also.',
+
+  // Italian queries (translated for clarity)
+  'Good afternoon.',
+  'I would like to know if the sweater that is on sale for €147.50 in grey and white will be available again in size XS.',
+  'Pullover.',
+  'I mean the one from the Peanuts collection.',
+  'Yes, this one.',
+
+  // Existing queries (for reference, can be kept or removed as needed)
+  // ...existing code...
 ];
 
 async function createSession(userIdx) {
@@ -120,7 +106,7 @@ async function sendMessagesOnWebSocket(sessionId, userIdx, messages) {
         };
         ws.send(JSON.stringify(message));
         if (msgIdx < messages.length - 1) {
-          await delay(20000); // 10 seconds delay between messages
+          await delay(20000); // 20 seconds delay between messages
         }
       }
     });
